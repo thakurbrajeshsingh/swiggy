@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Restaurant = () => {
+    
+  const getLoc = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  };
+
+  useEffect(() => {
+    getLoc();
+  }, []);
+
   return (
     <>
       <div>
