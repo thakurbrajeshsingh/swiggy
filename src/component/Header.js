@@ -1,9 +1,8 @@
 import React from "react";
 import data from "../constants/data";
-import { icons } from "../constants/icons";
 
 const Header = () => {
-  console.log(data);
+
   return (
     <div className="bg-white m-5 mx-16 space-x-10 ">
       <div className="flex">
@@ -24,12 +23,12 @@ const Header = () => {
         {/* Nav Links */}
 
         <div className=" mx-7 my-auto mx-auto">
-          <ul className="flex gap-16">
+          <ul className="flex gap-16 sm:gap-4">
             {data.map((item) => {
               return (
-                <div className="flex">
+                <div className="flex" key={item.id}>
                   <img src={item.icon} className="w-6 h-6 mx-2 " />
-                  <li className="text-base ">{item.label}</li>
+                  <li className="text-base">{item.label}</li>
                 </div>
               );
             })}

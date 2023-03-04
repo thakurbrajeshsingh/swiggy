@@ -1,5 +1,3 @@
-import icons from "./icons";
-
 const nav_Bar = [
   {
     id: 0,
@@ -14,7 +12,7 @@ const nav_Bar = [
   {
     id: 2,
     label: "Help",
-    icon: require("../assets/icons/user.png"),
+    icon: require("../assets/icons/help.png"),
   },
   
   {

@@ -7,11 +7,11 @@ import Error from "./component/Error";
 import About from "./component/About";
 import Profile from "./component/Profile";
 import Contact from "./component/Contact";
+import Carousel from "react-multi-carousel";
 
 const AppLayout = () => {
   return (
     <>
-    
       <Header />
       <Outlet />
       <Footer />
