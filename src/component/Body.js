@@ -16,7 +16,7 @@ const Body = () => {
   async function getCarouselData() {
     const data = await fetch(SWIGGY_BASE_URL);
     const json = await data.json();
-    setCarouselData(json.data.cards[0].data.data.cards);
+    setCarouselData(json?.data?.cards[0]?.data?.data?.cards);
   }
   return (
     <>
@@ -24,7 +24,7 @@ const Body = () => {
         <div className="bg-slate-900 my-5">
           <CustomCarousel>
             {carouselData.map((item, index) => {
-              const creativeId = item.data.creativeId;
+              const creativeId = item?.data?.creativeId;
               return (
                 <div key={index} className="my-8 mx-1">
                   <img
@@ -37,7 +37,13 @@ const Body = () => {
             })}
           </CustomCarousel>
         </div>
-        <Restaurant />
+        <div className="m-10">
+          <h1 className=" mb-2 text-2xl font-semibold text-slate-800">Restaurants</h1>
+          <hr />
+          <div className="my-6 ">
+            <Restaurant />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -26,9 +26,9 @@ const Header = () => {
           <ul className="flex gap-16 sm:gap-4">
             {data.map((item) => {
               return (
-                <div className="flex" key={item.id}>
+                <div className="flex" key={item?.id}>
                   <img src={item.icon} className="w-6 h-6 mx-2 " />
-                  <li className="text-base">{item.label}</li>
+                  <li className="text-base font-semibold">{item?.label}</li>
                 </div>
               );
             })}
