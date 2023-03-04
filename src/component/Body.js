@@ -8,6 +8,7 @@ import Restaurant from "./Restaurant";
 
 const Body = () => {
   const [carouselData, setCarouselData] = useState([]);
+  const [restaurant, setRestaurant] = useState([]);
 
   useEffect(() => {
     getCarouselData();
@@ -17,7 +18,10 @@ const Body = () => {
     const data = await fetch(SWIGGY_BASE_URL);
     const json = await data.json();
     setCarouselData(json?.data?.cards[0]?.data?.data?.cards);
+    setRestaurant(json.data.cards[2].data.data.cards);
   }
+
+  console.log("restra ", restaurant);
   return (
     <>
       <div>
@@ -38,10 +42,25 @@ const Body = () => {
           </CustomCarousel>
         </div>
         <div className="m-10">
-          <h1 className=" mb-2 text-2xl font-semibold text-slate-800">Restaurants</h1>
+          <h1 className=" mb-2 text-2xl font-semibold text-slate-800">
+            Restaurants
+          </h1>
           <hr />
-          <div className="my-6 ">
-            <Restaurant />
+
+          {/* restraurant list */}
+          <div className="flex my-6 flex-wrap">
+            {restaurant.map((res) => {
+              // console.log("rest name ",res.data.name)
+              return (
+                <>
+                  <Restaurant
+                    name={res.data.name}
+                    key={res.data.id}
+                    cloudinaryImageId={res.data.cloudinaryImageId}
+                  />
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
