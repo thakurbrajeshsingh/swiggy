@@ -18,7 +18,7 @@ const Body = () => {
     const data = await fetch(SWIGGY_BASE_URL);
     const json = await data.json();
     setCarouselData(json?.data?.cards[0]?.data?.data?.cards);
-    setRestaurant(json.data.cards[2].data.data.cards);
+    setRestaurant(json?.data?.cards[2]?.data?.data?.cards);
   }
 
   console.log("restra ", restaurant);
@@ -50,13 +50,22 @@ const Body = () => {
           {/* restraurant list */}
           <div className="flex my-6 flex-wrap">
             {restaurant.map((res) => {
-              // console.log("rest name ",res.data.name)
+              // console.log(
+              //   "rest meta ",
+              //   res?.data?.aggregatedDiscountInfo.descriptionList[0].meta);
               return (
                 <>
                   <Restaurant
-                    name={res.data.name}
-                    key={res.data.id}
-                    cloudinaryImageId={res.data.cloudinaryImageId}
+                    key={res?.data?.id}
+                    name={res?.data?.name}
+                    cloudinaryImageId={res?.data?.cloudinaryImageId}
+                    cuisines={res?.data?.cuisines}
+                    costForTwoString={res?.data?.costForTwoString}
+                    slaString={res?.data?.slaString}
+                    avgRating={res?.data?.avgRating}
+                    meta={
+                      res?.data?.aggregatedDiscountInfo.descriptionList[0].meta
+                    }
                   />
                 </>
               );
