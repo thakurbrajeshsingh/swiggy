@@ -50,9 +50,6 @@ const Body = () => {
           {/* restraurant list */}
           <div className="flex my-6 flex-wrap">
             {restaurant.map((res) => {
-              // console.log(
-              //   "rest meta ",
-              //   res?.data?.aggregatedDiscountInfo.descriptionList[0].meta);
               return (
                 <>
                   <Restaurant
