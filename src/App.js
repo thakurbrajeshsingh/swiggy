@@ -7,7 +7,7 @@ import Error from "./component/Error";
 import About from "./component/About";
 import Profile from "./component/Profile";
 import Contact from "./component/Contact";
-import Carousel from "react-multi-carousel";
+import RestaurantMenu from "./component/RestaurantMenu";
 
 const AppLayout = () => {
   return (
@@ -42,6 +42,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu />,
       },
     ],
   },
