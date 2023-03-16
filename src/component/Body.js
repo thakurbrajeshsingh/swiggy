@@ -6,6 +6,7 @@ import "react-multi-carousel/lib/styles.css";
 import CustomCarousel from "./CustomCarousel";
 import Restaurant from "./Restaurant";
 import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [carouselData, setCarouselData] = useState([]);
@@ -25,56 +26,63 @@ const Body = () => {
   console.log("restrat ", restaurant);
   return (
     <>
-      <div>
-        <div className="bg-slate-900 my-5">
-          {carouselData > 0 ? (
-            <CustomCarousel>
-              {carouselData.map((item, index) => {
-                const creativeId = item?.data?.creativeId;
+   
+        <div>
+          <div className="bg-slate-900 my-5">
+            {carouselData.length === 0 ? (
+              <Shimmer />
+            ) : (
+              <CustomCarousel>
+                {carouselData?.map((item) => {
+                  const creativeId = item?.data?.creativeId;
+                  return (
+                    <div key={item?.data?.creativeId} className="my-8 mx-1">
+                      <img
+                        src={IMG_CDN_URL + creativeId}
+                        alt="carousel-img"
+                        className="w-72 h-72 m-6"
+                      />
+                    </div>
+                  );
+                })}
+              </CustomCarousel>
+            )}
+          </div>
+          <div className="m-10">
+            <h1 className=" mb-2 text-2xl font-semibold text-slate-800">
+              {restaurant?.length} Restaurants
+            </h1>
+            <hr />
+
+            {/* restraurant list */}
+            <div className="flex my-6 flex-wrap">
+              {restaurant?.map((res) => {
                 return (
-                  <div key={index} className="my-8 mx-1">
-                    <img
-                      src={IMG_CDN_URL + creativeId}
-                      alt="carousel-img"
-                      className="w-72 h-72 m-6"
-                    />
-                  </div>
+                  <>
+                    <Link
+                      to={"/restaurant/" + res?.data?.id}
+                      key={res?.data?.id}
+                    >
+                      <Restaurant
+                        name={res?.data?.name}
+                        cloudinaryImageId={res?.data?.cloudinaryImageId}
+                        cuisines={res?.data?.cuisines}
+                        costForTwoString={res?.data?.costForTwoString}
+                        slaString={res?.data?.slaString}
+                        avgRating={res?.data?.avgRating}
+                        meta={
+                          res?.data?.aggregatedDiscountInfo?.descriptionList[0]
+                            ?.meta
+                        }
+                      />
+                    </Link>
+                  </>
                 );
               })}
-            </CustomCarousel>
-          ) : null}
-        </div>
-        <div className="m-10">
-          <h1 className=" mb-2 text-2xl font-semibold text-slate-800">
-            {restaurant.length} Restaurants
-          </h1>
-          <hr />
-
-          {/* restraurant list */}
-          <div className="flex my-6 flex-wrap">
-            {restaurant.map((res) => {
-              return (
-                <>
-                  <Link to={"/restaurant/" + res?.data?.id} key={res?.data?.id}>
-                    <Restaurant
-                      name={res?.data?.name}
-                      cloudinaryImageId={res?.data?.cloudinaryImageId}
-                      cuisines={res?.data?.cuisines}
-                      costForTwoString={res?.data?.costForTwoString}
-                      slaString={res?.data?.slaString}
-                      avgRating={res?.data?.avgRating}
-                      meta={
-                        res?.data?.aggregatedDiscountInfo.descriptionList[0]
-                          .meta
-                      }
-                    />
-                  </Link>
-                </>
-              );
-            })}
+            </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 };

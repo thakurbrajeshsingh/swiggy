@@ -11,16 +11,7 @@ const Restaurant = ({
   avgRating,
   meta,
 }) => {
-  const getLoc = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      // console.log("Latitude is :", position.coords.latitude);
-      // console.log("Longitude is :", position.coords.longitude);
-    });
-  };
-
-  useEffect(() => {
-    getLoc();
-  }, []);
+  
 
   return (
     <>
@@ -31,7 +22,7 @@ const Restaurant = ({
           className="w-64 h-40 overflow-clip"
         />
         <h1 className="font-medium mt-2 mb-2">{name}</h1>
-        <h3 className="text-xs text-gray-500 mb-4">{cuisines.join(", ")}</h3>
+        <h3 className="text-xs text-gray-500 mb-4">{cuisines?.join(", ")}</h3>
         <ul className="flex space-x-6 mb-4 text-xs text-gray-600">
           <li className="bg-green-500 w-10 h-5 text-center text-white font-semibold">
             ★ {avgRating}
@@ -43,7 +34,7 @@ const Restaurant = ({
         <div className="flex">
           <img src={icons.offer} alt="offer" className="h-4 my-2" />
           <h1 className="text-xs mt-2 mx-2 text-amber-900">
-            {meta.toUpperCase()}
+            {meta?.toUpperCase()}
           </h1>
         </div>
         <hr className="my-2 invisible group-hover:visible"/>

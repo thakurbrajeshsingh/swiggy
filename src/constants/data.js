@@ -14,11 +14,16 @@ const nav_Bar = [
     label: "Help",
     icon: require("../assets/icons/help.png"),
   },
-  
+
   {
     id: 3,
     label: "User",
     icon: require("../assets/icons/user.png"),
+  },
+  {
+    id: 4,
+    label: "Instamart",
+    icon: require("../assets/icons/instamart.png"),
   },
 ];
 

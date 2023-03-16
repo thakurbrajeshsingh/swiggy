@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import data from "../constants/data";
 
 const Header = () => {
+  const [location, setLocation] = useState([]);
+
+  useEffect(() => {
+    getLoc();
+  }, []);
+
+  const getLoc = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setLocation(position.coords);
+      // console.log("Latitude is :", position.coords.latitude);
+      // console.log("Longitude is :", position.coords.longitude);
+    });
+  };
+
   return (
     <div className="bg-white m-5 mx-16 space-x-10">
       <div className="flex justify-between">
@@ -19,7 +33,8 @@ const Header = () => {
           <div className="flex space-x-2  mx-7 my-auto">
             <h2 className="font-bold underline ">Other</h2>
             <h2 className="text-gray-500 text-base">
-              W-9, Aditypur Colony Site No 1, Aditya...
+              {location.latitude + ","} {location.longitude}
+              {/* W-9, Aditypur Colony Site No 1, Aditya... */}
             </h2>
           </div>
         </div>
@@ -30,10 +45,12 @@ const Header = () => {
           <ul className="flex flex-wrap">
             {data.map((item) => {
               return (
-                <div className="flex justify-between mx-3" key={item?.id}>
-                  <img src={item.icon} className="w-6 h-6 mx-2 " />
-                  <li className="text-base font-semibold">{item?.label}</li>
-                </div>
+                <Link to={(item.label).toLocaleLowerCase()} key={item?.id}>
+                  <div className="flex justify-between mx-3" >
+                    <img src={item?.icon} className="w-6 h-6 mx-2 " />
+                    <li className="text-base font-semibold">{item?.label}</li>
+                  </div>
+                </Link>
               );
             })}
           </ul>
