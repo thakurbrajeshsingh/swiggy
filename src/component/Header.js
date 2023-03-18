@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import data from "../constants/data";
+import UserContext from "../constants/UserContext";
 
 const Header = () => {
   const [location, setLocation] = useState([]);
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     getLoc();
@@ -36,6 +39,13 @@ const Header = () => {
               {location.latitude + ","} {location.longitude}
               {/* W-9, Aditypur Colony Site No 1, Aditya... */}
             </h2>
+            <h2>
+              {/* user Info */}
+              <div className="flex ">
+                <h2 className="mr-2 text-amber-500 text-base">{user.name}</h2>
+                <h2 className="text-gray-400 text-base">{user.email}</h2>
+              </div>
+            </h2>
           </div>
         </div>
 
@@ -45,8 +55,8 @@ const Header = () => {
           <ul className="flex flex-wrap">
             {data.map((item) => {
               return (
-                <Link to={(item.label).toLocaleLowerCase()} key={item?.id}>
-                  <div className="flex justify-between mx-3" >
+                <Link to={item.label.toLocaleLowerCase()} key={item?.id}>
+                  <div className="flex justify-between mx-3">
                     <img src={item?.icon} className="w-6 h-6 mx-2 " />
                     <li className="text-base font-semibold">{item?.label}</li>
                   </div>
