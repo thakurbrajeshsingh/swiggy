@@ -10,8 +10,6 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
 
-
-
   const [carouselData, setCarouselData] = useState([]);
   const [restaurant, setRestaurant] = useState([]);
 
